@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Text, View, ScrollView, StyleSheet } from 'react-native';
+
 import Header from '../../component/home/Header';
 import CategoryTabs from '../../component/home/CategoryTabs';
 import Banner from '../../component/home/Banner';
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: 200, // Extend red background behind banner
+    height: 200,
     backgroundColor: colors.primary
   },
   signInBanner: {
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: 'rgba(0,0,0,0.85)', // Dark transparent background
+    backgroundColor: 'rgba(0,0,0,0.85)',
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 16,

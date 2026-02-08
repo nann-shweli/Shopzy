@@ -4,11 +4,15 @@ import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-nati
 import { colors, spacing } from '../../theme/colors';
 import { CATEGORIES } from '../../data/mockData';
 
+import { useNavigation } from '@react-navigation/native';
+
 interface CategoryTabsProps {
     backgroundColor?: string;
 }
 
 const CategoryTabs = ({ backgroundColor = colors.primary }: CategoryTabsProps) => {
+    const navigation = useNavigation<any>();
+
     return (
         <View style={[styles.container, { backgroundColor }]}>
             <ScrollView
@@ -17,7 +21,11 @@ const CategoryTabs = ({ backgroundColor = colors.primary }: CategoryTabsProps) =
                 contentContainerStyle={styles.scrollContent}
             >
                 {CATEGORIES.map((category, index) => (
-                    <TouchableOpacity key={index} style={styles.tabItem}>
+                    <TouchableOpacity
+                        key={index}
+                        style={styles.tabItem}
+                        onPress={() => navigation.navigate('ProductList', { category })}
+                    >
                         <Text style={[styles.tabText, index === 0 && styles.activeTabText]}>
                             {category}
                         </Text>

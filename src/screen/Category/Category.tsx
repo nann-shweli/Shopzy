@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Dimensions } from 'react-native';
+
 import { colors, spacing } from '../../theme/colors';
 
 const { width } = Dimensions.get('window');

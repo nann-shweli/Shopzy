@@ -1,6 +1,8 @@
 
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
 import { colors, spacing } from '../../theme/colors';
 import ProductFeed from '../../component/home/ProductFeed';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -28,13 +30,17 @@ const HEADER_ICONS = [
 ];
 
 const Me = () => {
+    const navigation = useNavigation<any>();
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
                 <Text style={styles.headerTitle}>Sign in / Register {'>'}</Text>
                 <View style={styles.headerActions}>
                     <TouchableOpacity><Text style={styles.actionIcon}>scan</Text></TouchableOpacity>
-                    <TouchableOpacity><Text style={styles.actionIcon}>⚙️</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
+                        <Text style={styles.actionIcon}>⚙️</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
 
