@@ -1,11 +1,12 @@
 
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Dimensions } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { colors, spacing } from '../../theme/colors';
 
 const { width } = Dimensions.get('window');
-const SIDEBAR_WIDTH = 100;
+const SIDEBAR_WIDTH = "45%";
 
 const CATEGORIES_SIDEBAR = [
     'Just for You', 'New In', 'Sale', 'Women Clothing', 'Beachwear', 'Home & Living', 'Curve', 'Men Clothing', 'Shoes', 'Cell Phones & Accessories', 'Underwear & Sleepwear'
@@ -42,10 +43,14 @@ const CATEGORY_TITLES: Record<string, string> = {
 import Header from '../../component/home/Header';
 
 const Category = () => {
-    const [activeCategory, setActiveCategory] = useState(CATEGORIES_SIDEBAR[3]); // Default to "Women Clothing" to show example
-
+    const navigation = useNavigation<any>();
+    const [activeCategory, setActiveCategory] = useState(CATEGORIES_SIDEBAR[3]);
     const subCategories = SUB_CATEGORIES_DATA[activeCategory] || SUB_CATEGORIES_DATA['default'];
     const sectionTitle = CATEGORY_TITLES[activeCategory] || CATEGORY_TITLES['default'];
+
+    const handleItemPress = () => {
+        navigation.navigate("ProductList", { category: activeCategory })
+    }
 
     return (
         <View style={styles.container}>
@@ -73,12 +78,12 @@ const Category = () => {
                     <Text style={styles.sectionTitle}>{sectionTitle}</Text>
                     <View style={styles.grid}>
                         {subCategories.map((item, index) => (
-                            <View key={index} style={styles.gridItem}>
+                            <TouchableOpacity onPress={handleItemPress} key={index} style={styles.gridItem}>
                                 <View style={styles.imageContainer}>
                                     <Image source={{ uri: item.image }} style={styles.image} />
                                 </View>
                                 <Text style={styles.itemText} numberOfLines={2}>{item.name}</Text>
-                            </View>
+                            </TouchableOpacity>
                         ))}
                     </View>
                     <View style={{ height: 100 }} />
@@ -126,8 +131,8 @@ const styles = StyleSheet.create({
         color: 'black',
     },
     mainContent: {
-        flex: 1,
-        padding: spacing.m,
+        paddingHorizontal: spacing.xs,
+        paddingVertical: spacing.m
     },
     sectionTitle: {
         fontSize: 14,
@@ -140,14 +145,14 @@ const styles = StyleSheet.create({
         gap: spacing.m,
     },
     gridItem: {
-        width: '30%',
+        width: '28%',
         alignItems: 'center',
-        marginBottom: spacing.m,
+        marginBottom: spacing.xs,
     },
     imageContainer: {
         width: 60,
         height: 60,
-        borderRadius: 30,
+        borderRadius: 18,
         overflow: 'hidden',
         marginBottom: spacing.xs,
         backgroundColor: '#f0f0f0'

@@ -1,7 +1,7 @@
 
 export const colors = {
-    primary: '#E60023', // Red from the screenshot
-    secondary: '#FFD700', // Gold/Yellow for accents
+    primary: '#E60023',
+    secondary: '#FFD700',
     background: '#F5F5F5',
     white: '#FFFFFF',
     text: '#333333',
