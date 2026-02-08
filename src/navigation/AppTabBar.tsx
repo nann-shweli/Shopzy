@@ -5,7 +5,10 @@ import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { Tab } from './AppNavigation';
 
 import Home from '../screen/Home/Home';
-import Detail from '../screen/Home/Details';
+import Category from '../screen/Category/Category';
+import Trends from '../screen/Trends/Trends';
+import Cart from '../screen/Cart/Cart';
+import Me from '../screen/Me/Me';
 import TabBar from './TabBar';
 
 
@@ -20,43 +23,43 @@ const AppTabBar = () => {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="Home"
+      initialRouteName="Shop"
     >
       <Tab.Screen
-        name="Home"
+        name="Shop"
         component={Home}
         options={{
           headerShown: false,
-          tabBarLabel: 'Home',
+          tabBarLabel: 'Shop',
         }}
       />
       <Tab.Screen
-        name="Detail"
-        component={Detail}
+        name="Category"
+        component={Category}
         options={{
           headerShown: false,
-          tabBarLabel: 'Detail',
+          tabBarLabel: 'Category',
         }}
       />
       <Tab.Screen
         name="Trends"
-        component={Detail}
+        component={Trends}
         options={{
           headerShown: false,
           tabBarLabel: 'Trends',
         }}
       />
       <Tab.Screen
-        name="Bag"
-        component={Detail}
+        name="Cart"
+        component={Cart}
         options={{
           headerShown: false,
-          tabBarLabel: 'Bag',
+          tabBarLabel: 'Cart',
         }}
       />
       <Tab.Screen
         name="Me"
-        component={Detail}
+        component={Me}
         options={{
           headerShown: false,
           tabBarLabel: 'Me',

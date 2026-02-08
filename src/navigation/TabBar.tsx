@@ -6,15 +6,23 @@ import {
   StyleSheet,
 } from 'react-native';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Icons from '../component/Icons';
 
-const TabBar = ({
-  state,
-  descriptors,
-  navigation,
-}: BottomTabBarProps) => {
+const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
+  const insets = useSafeAreaInsets();
+
   return (
-    <View style={styles.container}>
-      {state.routes.map((route:any, index:any) => {
+    <View
+      style={[
+        styles.container,
+        {
+          paddingBottom: Math.max(insets.bottom, 10),
+          height: 64 + insets.bottom,
+        },
+      ]}
+    >
+      {state.routes.map((route: any, index: any) => {
         const { options } = descriptors[route.key];
         const label =
           options.tabBarLabel ??
@@ -35,23 +43,24 @@ const TabBar = ({
           }
         };
 
+        const color = isFocused ? '#222' : '#999';
+
         return (
           <TouchableOpacity
             key={route.key}
             onPress={onPress}
-            style={styles.tabItem}
             activeOpacity={0.8}
+            style={styles.tabItem}
           >
-            <Text
-              style={[
-                styles.label,
-                { color: isFocused ? '#007AFF' : '#999' },
-              ]}
-            >
+            <Icons
+              name={label}
+              size={24}
+              color={color}
+              focused={isFocused}
+            />
+            <Text style={[styles.label, { color }]}>
               {label}
             </Text>
-
-            {isFocused && <View style={styles.indicator} />}
           </TouchableOpacity>
         );
       })}
@@ -64,25 +73,18 @@ export default TabBar;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    height: 100,
+    backgroundColor: '#fff',
     borderTopWidth: 1,
     borderTopColor: '#eee',
-    backgroundColor: '#fff',
   },
   tabItem: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    gap: 4,
   },
   label: {
-    fontSize: 12,
+    fontSize: 11,
     fontWeight: '500',
-  },
-  indicator: {
-    marginTop: 4,
-    width: 6,
-    height: 6,
-    borderRadius: 3,
-    backgroundColor: '#007AFF',
   },
 });
