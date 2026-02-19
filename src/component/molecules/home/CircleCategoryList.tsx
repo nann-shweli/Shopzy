@@ -3,8 +3,8 @@ import React from 'react';
 import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import { CIRCLE_CATEGORIES } from '../../data/mockData';
-import { spacing, colors } from '../../theme/colors';
+import { CIRCLE_CATEGORIES } from '../../../data/mockData';
+import { spacing, colors } from '../../../theme/colors';
 
 const CircleCategoryList = () => {
     const navigation = useNavigation<any>();

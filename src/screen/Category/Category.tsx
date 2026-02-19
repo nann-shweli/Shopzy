@@ -40,7 +40,7 @@ const CATEGORY_TITLES: Record<string, string> = {
     'default': 'Picks for You'
 };
 
-import Header from '../../component/home/Header';
+import Header from '../../component/molecules/home/Header';
 
 const Category = () => {
     const navigation = useNavigation<any>();

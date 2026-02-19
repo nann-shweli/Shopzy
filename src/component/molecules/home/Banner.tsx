@@ -1,8 +1,8 @@
 
 import React, { useRef } from 'react';
 import { View, Image, Text, ScrollView, StyleSheet, Dimensions, NativeSyntheticEvent, NativeScrollEvent } from 'react-native';
-import { BANNERS } from '../../data/mockData';
-import { spacing } from '../../theme/colors';
+import { BANNERS } from '../../../data/mockData';
+import { spacing } from '../../../theme/colors';
 
 const { width } = Dimensions.get('window');
 
@@ -48,7 +48,6 @@ const Banner = ({ onIndexChange }: BannerProps) => {
                     </View>
                 ))}
             </ScrollView>
-            {/* Pagination Dots could go here */}
         </View>
     );
 };

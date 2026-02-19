@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { View, ScrollView, StyleSheet } from 'react-native';
 
-import Header from '../../component/home/Header';
-import CategoryTabs from '../../component/home/CategoryTabs';
-import Banner from '../../component/home/Banner';
-import ServiceFeatures from '../../component/home/ServiceFeatures';
-import CircleCategoryList from '../../component/home/CircleCategoryList';
-import ProductFeed from '../../component/home/ProductFeed';
+import Header from '../../component/molecules/home/Header';
+import CategoryTabs from '../../component/molecules/home/CategoryTabs';
+import Banner from '../../component/molecules/home/Banner';
+import ServiceFeatures from '../../component/molecules/home/ServiceFeatures';
+import CircleCategoryList from '../../component/molecules/home/CircleCategoryList';
+import ProductFeed from '../../component/molecules/home/ProductFeed';
 import { colors } from '../../theme/colors';
 import { BANNERS } from '../../data/mockData';
+import SignInBanner from '../../component/molecules/home/SignInBanner';
 
 const Home = () => {
   const [headerColor, setHeaderColor] = useState(BANNERS[0]?.backgroundColor || colors.primary);
@@ -35,18 +36,10 @@ const Home = () => {
         <ServiceFeatures />
         <CircleCategoryList />
         <ProductFeed filterCategory={selectedCategory === 'All' ? undefined : selectedCategory.toLowerCase()} />
-        <View style={{ height: 100 }} />
+        <View style={styles.viewStyle} />
       </ScrollView>
 
-      {/* Sign In Sticky Banner */}
-      <View style={styles.signInBanner}>
-        <View style={styles.signInTextContainer}>
-          <Text style={styles.signInText}>Sign in and enjoy more</Text>
-        </View>
-        <View style={styles.signInButton}>
-          <Text style={styles.signInButtonText}>Sign In</Text>
-        </View>
-      </View>
+      <SignInBanner />
     </View>
   );
 };
@@ -68,37 +61,7 @@ const styles = StyleSheet.create({
     height: 200,
     backgroundColor: colors.primary,
   },
-  signInBanner: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: 'rgba(0,0,0,0.85)',
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    justifyContent: 'space-between',
-  },
-  signInTextContainer: {
-    flex: 1,
-  },
-  signInText: {
-    color: 'white',
-    fontSize: 14,
-    fontWeight: '500',
-  },
-  signInButton: {
-    backgroundColor: 'white',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 4,
-  },
-  signInButtonText: {
-    color: 'black',
-    fontWeight: 'bold',
-    fontSize: 14,
-  },
+  viewStyle: { height: 100 }
 });
 
 export default Home;

@@ -11,9 +11,9 @@ import {
     FlatList,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { useProducts } from '../../hooks/useProducts';
-import { spacing, colors } from '../../theme/colors';
-import { Product } from '../../services/api';
+import { useProducts } from '../../../hooks/useProducts';
+import { spacing, colors } from '../../../theme/colors';
+import { Product } from '../../../services/api';
 
 const { width } = Dimensions.get('window');
 const COLUMN_WIDTH = (width - spacing.m * 3) / 2;

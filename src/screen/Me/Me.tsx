@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'rea
 import { useNavigation } from '@react-navigation/native';
 
 import { colors, spacing } from '../../theme/colors';
-import ProductFeed from '../../component/home/ProductFeed';
+import ProductFeed from '../../component/molecules/home/ProductFeed';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const ORDERS_STATUS = [

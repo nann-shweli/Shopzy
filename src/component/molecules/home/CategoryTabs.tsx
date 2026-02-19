@@ -1,9 +1,9 @@
 
 import React, { useState } from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
-import { colors, spacing } from '../../theme/colors';
+import { colors, spacing } from '../../../theme/colors';
 import { useNavigation } from '@react-navigation/native';
-import { useCategories } from '../../hooks/useCategories';
+import { useCategories } from '../../../hooks/useCategories';
 
 interface CategoryTabsProps {
     backgroundColor?: string;

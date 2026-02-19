@@ -5,7 +5,7 @@ import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity, Dimensions
 import { colors, spacing } from '../../theme/colors';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import ProductFeed from '../../component/home/ProductFeed';
+import ProductFeed from '../../component/molecules/home/ProductFeed';
 
 const { width } = Dimensions.get('window');
 

@@ -3,7 +3,7 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, FlatList, Dimensions, TouchableOpacity } from 'react-native';
 
 import { colors, spacing } from '../../theme/colors';
-import Header from '../../component/home/Header';
+import Header from '../../component/molecules/home/Header';
 
 const { width } = Dimensions.get('window');
 

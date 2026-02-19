@@ -16,21 +16,21 @@ export const BANNERS = [
     image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=80',
     title: 'PROSPERITY EDIT',
     subtitle: 'SHOP CNY PICKS',
-    backgroundColor: '#E60023', // Red
+    backgroundColor: '#E60023',
   },
   {
     id: '2',
     image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=80',
     title: 'NEW ARRIVALS',
     subtitle: 'SUMMER COLLECTION',
-    backgroundColor: '#4CAF50', // Green
+    backgroundColor: '#4CAF50',
   },
   {
     id: '3',
     image: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=800&q=80',
     title: 'TECH DEALS',
     subtitle: 'UP TO 50% OFF',
-    backgroundColor: '#2196F3', // Blue
+    backgroundColor: '#2196F3',
   },
 ];
 

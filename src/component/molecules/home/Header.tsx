@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, SafeAreaView, ViewStyle } from 'react-native';
-import { colors, spacing } from '../../theme/colors';
+import { colors, spacing } from '../../../theme/colors';
 
 interface HeaderProps {
     backgroundColor?: string;
