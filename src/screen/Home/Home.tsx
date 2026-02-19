@@ -12,7 +12,9 @@ import { BANNERS } from '../../data/mockData';
 import SignInBanner from '../../component/molecules/home/SignInBanner';
 
 const Home = () => {
-  const [headerColor, setHeaderColor] = useState(BANNERS[0]?.backgroundColor || colors.primary);
+  const [headerColor, setHeaderColor] = useState(
+    BANNERS[0]?.backgroundColor || colors.primary,
+  );
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   const onBannerIndexChange = (index: number) => {
@@ -31,11 +33,19 @@ const Home = () => {
         onCategoryChange={setSelectedCategory}
       />
       <ScrollView bounces={false} style={styles.content}>
-        <View style={[styles.redBackgroundFix, { backgroundColor: headerColor }]} />
+        <View
+          style={[styles.redBackgroundFix, { backgroundColor: headerColor }]}
+        />
         <Banner onIndexChange={onBannerIndexChange} />
         <ServiceFeatures />
         <CircleCategoryList />
-        <ProductFeed filterCategory={selectedCategory === 'All' ? undefined : selectedCategory.toLowerCase()} />
+        <ProductFeed
+          filterCategory={
+            selectedCategory === 'All'
+              ? undefined
+              : selectedCategory.toLowerCase()
+          }
+        />
         <View style={styles.viewStyle} />
       </ScrollView>
 
@@ -61,7 +71,7 @@ const styles = StyleSheet.create({
     height: 200,
     backgroundColor: colors.primary,
   },
-  viewStyle: { height: 100 }
+  viewStyle: { height: 100 },
 });
 
 export default Home;
