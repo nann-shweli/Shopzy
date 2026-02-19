@@ -10,7 +10,7 @@ const CircleCategoryList = () => {
     const navigation = useNavigation<any>();
 
     const renderItem = ({ item }: { item: any }) => (
-        <TouchableOpacity onPress={() => navigation.navigate('ProductList')} style={styles.itemContainer}>
+        <TouchableOpacity onPress={() => navigation.navigate('ProductList', { category: item.name })} style={styles.itemContainer}>
             <View style={styles.imageContainer}>
                 <Image source={{ uri: item.image }} style={styles.image} />
             </View>

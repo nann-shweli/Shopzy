@@ -1,17 +1,32 @@
 
-import React from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { colors, spacing } from '../../theme/colors';
-import { CATEGORIES } from '../../data/mockData';
-
 import { useNavigation } from '@react-navigation/native';
+import { useCategories } from '../../hooks/useCategories';
 
 interface CategoryTabsProps {
     backgroundColor?: string;
+    onCategoryChange?: (category: string) => void;
+    selectedCategory?: string;
 }
 
-const CategoryTabs = ({ backgroundColor = colors.primary }: CategoryTabsProps) => {
+const CategoryTabs = ({
+    backgroundColor = colors.primary,
+    onCategoryChange,
+    selectedCategory = 'All',
+}: CategoryTabsProps) => {
     const navigation = useNavigation<any>();
+    const { categories, loading } = useCategories();
+
+    const handlePress = (category: string) => {
+        if (onCategoryChange) {
+            onCategoryChange(category);
+        } else {
+            // Navigate to product list if no handler provided
+            navigation.navigate('ProductList', { category });
+        }
+    };
 
     return (
         <View style={[styles.container, { backgroundColor }]}>
@@ -20,18 +35,25 @@ const CategoryTabs = ({ backgroundColor = colors.primary }: CategoryTabsProps) =
                 showsHorizontalScrollIndicator={false}
                 contentContainerStyle={styles.scrollContent}
             >
-                {CATEGORIES.map((category, index) => (
-                    <TouchableOpacity
-                        key={index}
-                        style={styles.tabItem}
-                        onPress={() => navigation.navigate('ProductList', { category })}
-                    >
-                        <Text style={[styles.tabText, index === 0 && styles.activeTabText]}>
-                            {category}
-                        </Text>
-                        {index === 0 && <View style={styles.activeIndicator} />}
-                    </TouchableOpacity>
-                ))}
+                {loading ? (
+                    <ActivityIndicator color="white" style={{ marginHorizontal: spacing.m }} />
+                ) : (
+                    categories.map((category, index) => {
+                        const isActive = category === selectedCategory;
+                        return (
+                            <TouchableOpacity
+                                key={index}
+                                style={styles.tabItem}
+                                onPress={() => handlePress(category)}
+                            >
+                                <Text style={[styles.tabText, isActive && styles.activeTabText]}>
+                                    {category}
+                                </Text>
+                                {isActive && <View style={styles.activeIndicator} />}
+                            </TouchableOpacity>
+                        );
+                    })
+                )}
             </ScrollView>
             <TouchableOpacity style={[styles.menuButton, { backgroundColor }]}>
                 <Text style={{ color: 'white', fontSize: 20 }}>☰</Text>
@@ -55,7 +77,7 @@ const styles = StyleSheet.create({
         marginRight: spacing.l,
         alignItems: 'center',
         position: 'relative',
-        height: 30, // Fixed height to manage alignment
+        height: 30,
     },
     tabText: {
         color: 'rgba(255,255,255,0.8)',
@@ -77,8 +99,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: spacing.s,
         paddingBottom: spacing.s,
         backgroundColor: colors.primary,
-        justifyContent: 'center'
-    }
+        justifyContent: 'center',
+    },
 });
 
 export default CategoryTabs;

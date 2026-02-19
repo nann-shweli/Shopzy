@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, StyleSheet } from 'react-native';
 
 import Header from '../../component/home/Header';
 import CategoryTabs from '../../component/home/CategoryTabs';
@@ -12,6 +12,7 @@ import { BANNERS } from '../../data/mockData';
 
 const Home = () => {
   const [headerColor, setHeaderColor] = useState(BANNERS[0]?.backgroundColor || colors.primary);
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
   const onBannerIndexChange = (index: number) => {
     const color = BANNERS[index]?.backgroundColor;
@@ -23,13 +24,17 @@ const Home = () => {
   return (
     <View style={styles.container}>
       <Header backgroundColor={headerColor} />
-      <CategoryTabs backgroundColor={headerColor} />
+      <CategoryTabs
+        backgroundColor={headerColor}
+        selectedCategory={selectedCategory}
+        onCategoryChange={setSelectedCategory}
+      />
       <ScrollView bounces={false} style={styles.content}>
         <View style={[styles.redBackgroundFix, { backgroundColor: headerColor }]} />
         <Banner onIndexChange={onBannerIndexChange} />
         <ServiceFeatures />
         <CircleCategoryList />
-        <ProductFeed />
+        <ProductFeed filterCategory={selectedCategory === 'All' ? undefined : selectedCategory.toLowerCase()} />
         <View style={{ height: 100 }} />
       </ScrollView>
 
@@ -61,7 +66,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: 200,
-    backgroundColor: colors.primary
+    backgroundColor: colors.primary,
   },
   signInBanner: {
     position: 'absolute',
@@ -73,27 +78,27 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 16,
     paddingVertical: 12,
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   signInTextContainer: {
-    flex: 1
+    flex: 1,
   },
   signInText: {
     color: 'white',
     fontSize: 14,
-    fontWeight: '500'
+    fontWeight: '500',
   },
   signInButton: {
     backgroundColor: 'white',
     paddingHorizontal: 16,
     paddingVertical: 8,
-    borderRadius: 4
+    borderRadius: 4,
   },
   signInButtonText: {
     color: 'black',
     fontWeight: 'bold',
-    fontSize: 14
-  }
+    fontSize: 14,
+  },
 });
 
 export default Home;
